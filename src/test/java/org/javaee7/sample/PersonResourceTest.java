@@ -45,7 +45,7 @@ public class PersonResourceTest {
     }
 
     /**
-     * Test of getList method, of class MyResource.
+     * GET all resources
      */
     @Test
     @InSequence(1)
@@ -68,7 +68,7 @@ public class PersonResourceTest {
     }
 
     /**
-     * Test of getPerson method, of class MyResource.
+     * GET a single resource
      */
     @Test
     @InSequence(2)
@@ -82,11 +82,11 @@ public class PersonResourceTest {
     }
 
     /**
-     * Test of getPerson method, of class MyResource.
+     * GET another single resource
      */
     @Test
     @InSequence(3)
-    public void testGetAntherSingle() {
+    public void testGetAnotherSingle() {
         Person p = target
                 .path("{id}")
                 .resolveTemplate("id", "7")
@@ -96,7 +96,7 @@ public class PersonResourceTest {
     }
 
     /**
-     * Test of getList method, of class MyResource.
+     * POST two resources
      */
     @Test
     @InSequence(4)
@@ -118,6 +118,9 @@ public class PersonResourceTest {
         assertEquals("Stuart", list[9].getName());
     }
     
+    /**
+     * DELETE two resources
+     */
     @Test
     @InSequence(5)
     public void testDeleteTwoNames() {
