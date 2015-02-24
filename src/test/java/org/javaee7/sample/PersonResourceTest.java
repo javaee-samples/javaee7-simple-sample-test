@@ -1,48 +1,19 @@
 package org.javaee7.sample;
 
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
-import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 
 /**
  * @author Arun Gupta
  */
 @RunWith(Arquillian.class)
-public class PersonResourceTest {
-    
-    private WebTarget target;
-    
-    @Deployment(testable = false)
-    public static WebArchive createDeployment() {
-        return ShrinkWrap.create(WebArchive.class)
-            .addClasses(Person.class);
-    }
-    
-    @ArquillianResource
-    private URL base;
-
-    @Before
-    public void setUp() throws MalformedURLException {
-        Client client = ClientBuilder.newClient();
-        target = client.target(URI.create(new URL(base, "webresources/persons").toExternalForm()));
-        target.register(Person.class);
-    }
+public class PersonResourceTest extends BaseTest {
 
     /**
      * GET all resources
@@ -111,13 +82,13 @@ public class PersonResourceTest {
 
         Person[] list = target.request().get(Person[].class);
         assertEquals(10, list.length);
-        
+
         verifyInitialNames(list);
 
         assertEquals("Leslie", list[8].getName());
         assertEquals("Stuart", list[9].getName());
     }
-    
+
     /**
      * DELETE two resources
      */
