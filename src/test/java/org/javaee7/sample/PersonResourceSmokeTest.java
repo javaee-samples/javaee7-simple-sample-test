@@ -31,7 +31,7 @@ public class PersonResourceSmokeTest {
         return Maven
                 .configureResolver()
                 .workOffline()
-                .resolve("org.javaee7.sample:javaee7-simple-sample:1.0-SNAPSHOT")
+                .resolve("org.javaee7.sample:javaee7-simple-sample:war:1.4-SNAPSHOT")
                 .withoutTransitivity()
                 .asSingle(WebArchive.class);
     }
@@ -42,7 +42,7 @@ public class PersonResourceSmokeTest {
     @Before
     public void setUp() throws MalformedURLException {
         Client client = ClientBuilder.newClient();
-        target = client.target(URI.create(new URL(base, "webresources/persons").toExternalForm()));
+        target = client.target(URI.create(new URL(base, "resources/persons").toExternalForm()));
         target.register(Person.class);
     }
 
