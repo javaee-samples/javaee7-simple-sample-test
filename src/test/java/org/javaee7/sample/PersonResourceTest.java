@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit.InSequence;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -47,7 +48,8 @@ public class PersonResourceTest {
      * Test of getList method, of class MyResource.
      */
     @Test
-    public void test1GetAll() {
+    @InSequence(1)
+    public void testGetAll() {
         Person[] list = target.request().get(Person[].class);
         assertEquals(8, list.length);
 
@@ -69,7 +71,8 @@ public class PersonResourceTest {
      * Test of getPerson method, of class MyResource.
      */
     @Test
-    public void test2GetSingle() {
+    @InSequence(2)
+    public void testGetSingle() {
         Person p = target
                 .path("{id}")
                 .resolveTemplate("id", "1")
@@ -82,7 +85,8 @@ public class PersonResourceTest {
      * Test of getPerson method, of class MyResource.
      */
     @Test
-    public void test3GetAntherSingle() {
+    @InSequence(3)
+    public void testGetAntherSingle() {
         Person p = target
                 .path("{id}")
                 .resolveTemplate("id", "7")
@@ -95,7 +99,8 @@ public class PersonResourceTest {
      * Test of getList method, of class MyResource.
      */
     @Test
-    public void test4Add2Names() {
+    @InSequence(4)
+    public void testAdd2Names() {
         MultivaluedHashMap<String, String> map = new MultivaluedHashMap<>();
         map.add("name", "Leslie");
         target.request().post(Entity.form(map));
@@ -114,7 +119,8 @@ public class PersonResourceTest {
     }
     
     @Test
-    public void test5DeleteTwoNames() {
+    @InSequence(5)
+    public void testDeleteTwoNames() {
         target
                 .path("{name}")
                 .resolveTemplate("name", "Leslie")
