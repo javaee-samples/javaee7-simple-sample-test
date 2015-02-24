@@ -22,13 +22,12 @@ public class BaseTest {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-        return ShrinkWrap.create(WebArchive.class).merge(
-                Maven.configureResolver()
+        return Maven.configureResolver()
                 .workOffline()
                 .resolve("org.javaee7.sample:javaee7-simple-sample:war:"
                         + System.getProperty("javaee7-sample-app-version"))
                 .withoutTransitivity()
-                .asSingle(WebArchive.class));
+                .asSingle(WebArchive.class);
     }
 
     @ArquillianResource
