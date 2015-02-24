@@ -24,6 +24,7 @@ public class BaseTest {
     public static WebArchive createDeployment() {
         return Maven.configureResolver()
                 .workOffline()
+//                .withRemoteRepo("my-repo", System.getProperty("nexus-repo"), "default")
                 .resolve("org.javaee7.sample:javaee7-simple-sample:war:"
                         + System.getProperty("javaee7-sample-app-version"))
                 .withoutTransitivity()
