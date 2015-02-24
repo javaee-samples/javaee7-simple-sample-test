@@ -31,7 +31,8 @@ public class PersonResourceSmokeTest {
         return ShrinkWrap.create(WebArchive.class).merge(
                 Maven.configureResolver()
                 .workOffline()
-                .resolve("org.javaee7.sample:javaee7-simple-sample:war:1.4-SNAPSHOT")
+                .resolve("org.javaee7.sample:javaee7-simple-sample:war:" + 
+                        System.getProperty("javaee7-sample-app-version"))
                 .withoutTransitivity()
                 .asSingle(WebArchive.class));
 
@@ -43,7 +44,6 @@ public class PersonResourceSmokeTest {
     @Before
     public void setUp() throws MalformedURLException {
         Client client = ClientBuilder.newClient();
-        System.out.println(base);
         target = client.target(URI.create(new URL(base, "resources/persons").toExternalForm()));
         target.register(Person.class);
     }

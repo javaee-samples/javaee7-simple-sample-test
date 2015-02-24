@@ -16,6 +16,7 @@
         <version.arquillian_core>1.1.7.Final</version.arquillian_core>
 
         <version.wildfly>8.0.0.Final</version.wildfly>
+        <javaee7-sample-app-version>1.4-SNAPSHOT</javaee7-sample-app-version>
     </properties>
     
     <dependencyManagement>
@@ -138,6 +139,9 @@
                             <includes>
                                 <include>**/*SmokeTest.java</include>
                             </includes>
+                            <systemPropertyVariables>
+                                <javaee7-sample-app-version>${javaee7-sample-app-version}</javaee7-sample-app-version>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
