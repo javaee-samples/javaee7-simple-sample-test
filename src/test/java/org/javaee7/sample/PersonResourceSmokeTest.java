@@ -22,26 +22,28 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class PersonResourceSmokeTest {
-    
+
     private WebTarget target;
-    
+
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-        
-        return Maven
-                .configureResolver()
+
+        return ShrinkWrap.create(WebArchive.class).merge(
+                Maven.configureResolver()
                 .workOffline()
                 .resolve("org.javaee7.sample:javaee7-simple-sample:war:1.4-SNAPSHOT")
                 .withoutTransitivity()
-                .asSingle(WebArchive.class);
+                .asSingle(WebArchive.class));
+
     }
-    
+
     @ArquillianResource
     private URL base;
 
     @Before
     public void setUp() throws MalformedURLException {
         Client client = ClientBuilder.newClient();
+        System.out.println(base);
         target = client.target(URI.create(new URL(base, "resources/persons").toExternalForm()));
         target.register(Person.class);
     }
