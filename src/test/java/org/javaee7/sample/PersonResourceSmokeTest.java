@@ -28,7 +28,12 @@ public class PersonResourceSmokeTest {
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
         
-        return Maven.resolver().resolve("org.javaee7.sample:javaee7-simple-sample:1.0-SNAPSHOT").withoutTransitivity().asSingle(WebArchive.class);
+        return Maven
+                .configureResolver()
+                .workOffline()
+                .resolve("org.javaee7.sample:javaee7-simple-sample:1.0-SNAPSHOT")
+                .withoutTransitivity()
+                .asSingle(WebArchive.class);
     }
     
     @ArquillianResource
