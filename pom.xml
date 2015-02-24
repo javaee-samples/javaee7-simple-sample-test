@@ -13,7 +13,7 @@
         <version.junit>4.11</version.junit>
         <version.javaee_api>7.0</version.javaee_api>
 
-        <version.arquillian_core>1.1.4.Final</version.arquillian_core>
+        <version.arquillian_core>1.1.7.Final</version.arquillian_core>
 
         <version.wildfly>8.0.0.Final</version.wildfly>
     </properties>
@@ -49,13 +49,9 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+            <artifactId>shrinkwrap-resolver-depchain</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-            <scope>test</scope>
+            <type>pom</type>
         </dependency>
     </dependencies>
     <build>
@@ -71,7 +67,7 @@
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.2.Final</version>
                 <executions>
                     <execution>
                         <phase>install</phase>
