@@ -1,0 +1,17 @@
+Java EE 7 Simple Sample Testsuite
+=================================
+
+This is the test workspace for
+https://github.com/javaee-samples/javaee7-simple-sample[Java EE 7 Simple Sample].
+
+. Configure
+  http://blog.arungupta.me/setup-local-nexus-repository-deploying-war-from-maven-techtip74/[local
+  Nexus repository].
+. Deploy a SNAPSHOT or RELEASE to WildFly as defined in
+  https://github.com/javaee-samples/javaee7-simple-sample-test[javaee7-simple-sample
+  project].
+. Change `nexus-repo` property to match the host/port for the Nexus repository.
+. Change `javaee7-sample-app-version` to match the SNAPSHOT or RELEASE version.
+. Run smoke tests as `mvn test -P smoketest`
+. Run full tests as `mvn test -P fulltest`
+
