@@ -19,13 +19,6 @@ public class PersonResourceSmokeTest extends BaseTest {
         Person[] list = target.request().get(Person[].class);
         assertEquals(8, list.length);
 
-        assertEquals("Penny", list[0].getName());
-        assertEquals("Leonard", list[1].getName());
-        assertEquals("Sheldon", list[2].getName());
-        assertEquals("Amy", list[3].getName());
-        assertEquals("Howard", list[4].getName());
-        assertEquals("Bernadette", list[5].getName());
-        assertEquals("Raj", list[6].getName());
-        assertEquals("Priya", list[7].getName());
+        verifyInitialNames(list);
     }
 }

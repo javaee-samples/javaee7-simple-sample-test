@@ -10,6 +10,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 
 /**
@@ -39,5 +40,16 @@ public class BaseTest {
         Client client = ClientBuilder.newClient();
         target = client.target(URI.create(new URL(base, "resources/persons").toExternalForm()));
         target.register(Person.class);
+    }
+    
+    protected void verifyInitialNames(Person[] list) {
+        assertEquals("Penny", list[0].getName());
+        assertEquals("Leonard", list[1].getName());
+        assertEquals("Sheldon", list[2].getName());
+        assertEquals("Amy", list[3].getName());
+        assertEquals("Howard", list[4].getName());
+        assertEquals("Bernadette", list[5].getName());
+        assertEquals("Raj", list[6].getName());
+        assertEquals("Priya", list[7].getName());
     }
 }
