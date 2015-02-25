@@ -8,7 +8,6 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Before;
@@ -23,8 +22,8 @@ public class BaseTest {
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
         return Maven.configureResolver()
-                .workOffline()
-//                .withRemoteRepo("my-repo", System.getProperty("nexus-repo"), "default")
+//                .workOffline()
+                .withRemoteRepo("local-nexus", System.getProperty("nexus-repo"), "default")
                 .resolve("org.javaee7.sample:javaee7-simple-sample:war:"
                         + System.getProperty("javaee7-sample-app-version"))
                 .withoutTransitivity()
